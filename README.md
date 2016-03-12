@@ -1,18 +1,19 @@
 # OuToLearn
 
-A template repository with wiki for a team project at JCE's software engineering course
+##Did you opened a new page in your life and need a help to fit into the secular world?
+##Here we are to help you!
+
+## Disclaimer
+This project is developed as part of the requirements for a [software engineering course](https://github.com/jce-il/se-class/wiki) at the software engineering department - [Azrieli College of Engineering](http://www.jce.ac.il/), Jerusalem, Israel.
+
 
 ![project logo (this one is taken from basecamp)](http://klipfolio.com/sites/default/files/integrations/basecamp.png)
 
 ## Please visit our [live application](https://demo.reactstarterkit.com/)
 - Alright, currently only a landing page...
 ##Contact Us
-[![Join the chat at https://gitter.im/robi-y/seproject-team-template](https://badges.gitter.im/robi-y/seproject-team-template.svg)](https://gitter.im/robi-y/seproject-team-template?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/katiapr/YotzimLilmod](https://badges.gitter.im/katiapr/YotzimLilmod.svg)](https://gitter.im/katiapr/YotzimLilmod?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-## [Issue Board](https://huboard.com/robi-y/seproject-team-template#/)
-
-## Disclaimer
-This project is developed as part of the requirements for a [software engineering course](https://github.com/jce-il/se-class/wiki) at the software engineering department - [Azrieli College of Engineering](http://www.jce.ac.il/), Jerusalem, Israel.
 
 Please visit our wiki for furthur project info: 
 
