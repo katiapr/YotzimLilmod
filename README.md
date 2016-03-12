@@ -12,6 +12,8 @@ This project is developed as part of the requirements for a [software engineerin
 
 ## Please visit our [live application](https://demo.reactstarterkit.com/)
 - Alright, currently only a landing page...
+
+
 ##Contact Us
 [![Join the chat at https://gitter.im/katiapr/YotzimLilmod](https://badges.gitter.im/katiapr/YotzimLilmod.svg)](https://gitter.im/katiapr/YotzimLilmod?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
