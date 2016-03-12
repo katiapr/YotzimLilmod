@@ -8,7 +8,7 @@ Here we are to help you!
 This project is developed as part of the requirements for a [software engineering course](https://github.com/jce-il/se-class/wiki) at the software engineering department - [Azrieli College of Engineering](http://www.jce.ac.il/), Jerusalem, Israel.
 
 
-![project logo (this one is taken from basecamp)](http://klipfolio.com/sites/default/files/integrations/basecamp.png)
+![project logo (this one is taken from basecamp)](https://github.com/katiapr/YotzimLilmod/blob/master/Untitled.jpg)
 
 ## Please visit our [live application](https://demo.reactstarterkit.com/)
 - Alright, currently only a landing page...
