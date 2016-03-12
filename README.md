@@ -1,4 +1,5 @@
-# OuToLearn
+
+![project logo (this one is taken from basecamp)](https://github.com/katiapr/YotzimLilmod/blob/master/Untitled.jpg)
 
 Have you opened a new page in your life and need a help to fit into the secular world?
 <br/>
@@ -8,7 +9,7 @@ Here we are to help you!
 This project is developed as part of the requirements for a [software engineering course](https://github.com/jce-il/se-class/wiki) at the software engineering department - [Azrieli College of Engineering](http://www.jce.ac.il/), Jerusalem, Israel.
 
 
-![project logo (this one is taken from basecamp)](https://github.com/katiapr/YotzimLilmod/blob/master/Untitled.jpg)
+
 
 ## Please visit our [live application](https://demo.reactstarterkit.com/)
 - Alright, currently only a landing page...
