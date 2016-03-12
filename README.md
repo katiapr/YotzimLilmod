@@ -1,7 +1,7 @@
 # OuToLearn
 
-#Did you opened a new page in your life and need a help to fit into the secular world?
-#Here we are to help you!
+Did you opened a new page in your life and need a help to fit into the secular world?
+Here we are to help you!
 
 ## Disclaimer
 This project is developed as part of the requirements for a [software engineering course](https://github.com/jce-il/se-class/wiki) at the software engineering department - [Azrieli College of Engineering](http://www.jce.ac.il/), Jerusalem, Israel.
