@@ -15,8 +15,9 @@ This project is developed as part of the requirements for a [software engineerin
 
 
 ##Contact Us
-[![Join the chat at https://gitter.im/katiapr/YotzimLilmod](https://badges.gitter.im/katiapr/YotzimLilmod.svg)](https://gitter.im/katiapr/YotzimLilmod?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/robi-y/seproject-team-template](https://badges.gitter.im/robi-y/seproject-team-template.svg)](https://gitter.im/robi-y/seproject-team-template?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+## [Issue Board](https://huboard.com/robi-y/seproject-team-template#/)
 
 Please visit our wiki for furthur project info: 
 
