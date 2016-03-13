@@ -11,7 +11,7 @@ This project is developed as part of the requirements for a [software engineerin
 
 
 
-## Please visit our [live application](hhttp://katiaprapp.azurewebsites.net/#/user/katiapr)
+## Please visit our [live application](http://katiaprapp.azurewebsites.net/#/user/katiapr)
 - Alright, currently only a landing page...
 
 
