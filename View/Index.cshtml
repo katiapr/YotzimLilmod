@@ -1,0 +1,126 @@
+@using YotzimLilmod.Models
+@model YotzimLilmod.Models.UserModels
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+<html>
+<head>
+    <title>יוצאים לשינוי</title>
+    <link rel="stylesheet" type="text/css" href="css/general.css">
+</head>
+<body>
+    <a name="main_anchor"></a>
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=84196151638";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+    <table class="nav">
+        <tr>
+            <td class="navTableTab"><a href="#info_anchor"><div class="anchors">אודות</div></a></td>
+            <td class="navTableTab"><a href="#tell_anchor"><div class="anchors">מספרים עלינו</div></a></td>
+            <td class="navTableTab" id="goToLogin"><a href="#login_anchor"><div class="anchors">כניסה</div></a></td>
+        </tr>
+    </table>
+    <div class="tblMain">
+        <center>
+
+            <img class="header" src="~/Images/banner.jpg" width=100% />
+            <a name="login_anchor"></a>
+            <table border=0 class="contentTable" cellpadding="10">
+                <tr>
+                    <td id="contentTableLilAbout"><h3 class="myH3">קצת עלינו</h3><hr><br>יוצאים לשינוי (ע"ר)- להבטחת זכויות היוצאים בשאלה, על ידי פעילות מול קובעי מדיניות, פיתוח תוכניות והעלאת הנושא למודעות הציבורית.</td>
+                    <td rowspan="2">
+                        @* Here *@
+                        @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+                        {
+                            //this  is for create form tag
+                            @Html.AntiForgeryToken()          // this is for prevent CSRF attack
+                            @Html.ValidationSummary(true)
+                            if (@ViewBag.Message != null)
+                            {
+                                <div style="border: 1px solid red">
+                                    @ViewBag.Message
+                                </div>
+                            }
+                            <table>
+                                <tr>
+                                    <td>@Html.LabelFor(a => a.UserName)</td>
+                                    <td>@Html.TextBoxFor(a => a.UserName)</td>
+                                    <td>@Html.ValidationMessageFor(a => a.UserName)</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @Html.LabelFor(a => a.Password)
+                                    </td>
+                                    <td>
+                                        @Html.PasswordFor(a => a.Password)
+                                    </td>
+                                    <td>
+                                        @Html.ValidationMessageFor(a => a.Password)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <input type="submit" value="כניסה" />
+                                        
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        }
+                        @*-----*@
+                    </td>
+                </tr>
+                <tr>
+                    <td width=500px height=500px>
+                        <h3 class="myH3">עדכונים מדף הפייסבוק שלנו</h3>
+                        <div class="fb-page" data-href="https://www.facebook.com/yozimleshinuy" data-tabs="timeline" data-width="500" data-height="350" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/yozimleshinuy"><a href="https://www.facebook.com/yozimleshinuy">‎Out for Change - יוצאים לשינוי‎</a></blockquote></div></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="contentTableLilAbout">
+                        <h3 class="myH3">מספרים עלינו</h3>
+                        <a name="tell_anchor">
+                            <table width=100% border=0>
+                                <tr class="tell_title"><td width=80%>*שם כלשהו* </td><td width=20%>תאריך</td><hr></tr>
+                                <tr><td colspan="2" width=100% class="tell_story">סיפור כלשהו</td></tr>
+                            </table>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="contentTableLilAbout">
+                        <h3 class="myH3">אודות</h3><hr>
+                        יוצאים לשינוי הינו ארגון שהוקם בקיץ 2012 והפך לעמותה רשומה בחודש מרץ 2013. העמותה פועלת להבטחת זכויות ליוצאים בשאלה מהחברה החרדית, באמצעות פעילות מול קובעי מדיניות, פיתוח תוכניות והעלאת הנושא למודעות הציבורית. בשונה מחלק מהעמותות האחרות, עמותת יוצאים לשינוי דואגת לסיוע לכל בוגרי המגזר החרדי ואינה מתנה את הסיוע בעזיבת הדת, המצב הנפשי או כל תנאי אחר. העמותה שמה דגש על סיוע ישיר של המדינה ומוסדות ציבור ליוצאים בשאלה, על מנת להקנות להם כלים, שיאפשרו להם להתקיים בכוחות עצמם.
+
+                        הצורך בסיוע נובע מפערי ההשכלה והתרבות העצומים שחווים העוזבים את הקהילה החרדית, שבצירוף היעדר התמיכה מהמשפחה שרובם חווים, הופך את ההשתלבות שלהם בחברה הכללית לקשה וארוכה מאד. הדבר נכון לא רק לגבי מי שבוחרים להפוך לחילונים, אלא גם למי שמגדירים את עצמם כיום כמסורתיים או דתיים, כיוון שהיעדר לימודי הליב"ה, ההיכרות עם הצבא והחברה הישראלית והיכולת להתקיים עצמאית, מקשים עליהם באותה המידה.
+                        העמותה מאמינה שהסיוע לאותם צעירים מהווה אינטרס וחובה של המדינה גם יחד, שכן היא זו שאפשרה את יצירת הפערים איתם הם נאלצים להתמודד והיא זו שתרוויח מהפיכתם לאזרחים יצרנים. בשנים האחרונות הפנימו כל הגורמים הממשלתיים, שלא ניתן לצפות להשתלבות של החרדים בשוק התעסוקה, בצבא או במערכת ההשכלה הגבוהה, ללא סיוע מיוחד שיאפשר להם לגשר על הפערים ולכן נפתחו מסלולים יעודיים רבים עבורם. חלק גדול מפעילות העמותה מתמקד בהשוואת הזכויות של בוגרי מערכת החינוך החרדית לאלו של החרדים, שכן הם צברו בדיוק את אותם הפערים ולמעשה זקוקים לסיוע אף יותר, בגלל היעדר הגב הכלכלי של הקהילה והמשפחה.
+
+                        פעילות העמותה מתמקדת בתחומי ההשכלה (סיוע בהשלמת בגרויות, קבלת מלגות, שיעורי עזר ועוד), צבא (זכאות למעמד חייל בודד, התאמת המיונים לצבא ועוד), תעסוקה (הכשרה מקצועית, סיוע בהשמה ועוד) ומשפחה (התמודדות במקרים בו אחד מבני הזוג יוצא בשאלה). בנוסף לכך פועלת העמותה להעלאת המודעות לתופעת היציאה בשאלה והצרכים של היוצאים וכן להנגשת המידע על הזכויות שלהם לקהילת היוצאים בשאלה.
+                        <a name="info_anchor"></a>
+                    </td>
+                </tr>
+            </table>
+        </center>
+    </div>
+    <div width=100% height=150px border=1 class="bottomTable">
+        <a href="#main_anchor">ראשי</a>
+        <a href="#login_anchor">כניסה</a>
+        <a href="#tell_anchor">מספרים עלינו</a>
+        <a href="#info_anchor">אודות</a>
+    </div>
+
+
+</body>
+</html>
+
