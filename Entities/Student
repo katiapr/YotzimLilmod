@@ -16,9 +16,9 @@ namespace YotzimLilmod.Entities
         public string Course { get; set; }
         public string Note { get; set; }
 
-        public Student FillData(DataRow row)
+        public static Student FillData(DataRow row)
         {
-            return new Student
+            return new Student()
             {
                 StudentID = Convert.ToInt32(row["StudentID"]),
                 StrudentName = Convert.ToString(row["StrudentName"]),
