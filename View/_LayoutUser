@@ -1,0 +1,60 @@
+@model YotzimLilmod.Models.UserModels
+@{
+    ViewBag.Title = "_LayoutLogin";
+    //Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+@Styles.Render("~/Content/general.css")
+@RenderBody()
+<html>
+<head>
+    <title>יוצאים לשינוי</title>
+    <link rel="stylesheet" type="text/css" href="css/general.css">
+</head>
+<body>
+    <a name="main_anchor"></a>
+    <div id="fb-root"></div>
+
+    <img id="logo" src="~/Images/logo.png" />
+    <div class="login">
+
+    </div>
+    <div class="mainFrame">
+        <nav>
+            <ul class="menuTemplate4 decor4_1">
+                @if (Convert.ToInt32(Session["Access"]) == 2)
+                {
+                    <li>@Html.ActionLink("דיווח שעות", null)</li>
+                    <li>@Html.ActionLink("הגדרות", null)</li>
+                    <li>@Html.ActionLink("הודעות", null)</li>
+                }
+                else
+                {
+                    <li>@Html.ActionLink("דוחות", null)</li>
+                    <li>@Html.ActionLink("רישום", null)</li>
+                    <li>@Html.ActionLink("הודעות", null)</li>
+                    <li>@Html.ActionLink("רשימות", null)</li>
+                    <li>@Html.ActionLink("מורים", null)</li>
+                    <li>@Html.ActionLink("סטודנטים", null)</li>
+                }
+            </ul>
+        </nav>
+        <aside id="cooAside">
+            @if (Session["UserName"] != null)
+            {
+                <p id="username"> שלום משתמש ::</p>
+                <hr />
+                @String.Format("{0} {1}", @Session["UserFirstName"], @Session["UserLastName"])
+               
+                <hr />
+                @Html.ActionLink("יציאה", "Index", FormMethod.Post)
+                @*<input type="submit" value="יציאה" />*@
+            }
+        </aside>
+
+        <main>
+            --לוח חודשי או חלון עבור תפריטי המשנה--
+        </main>
+
+    </div>
+</body>
+</html>
