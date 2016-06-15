@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <title>יוצאים ללמוד</title>
+        <link rel="stylesheet" href="css/form.css">
+        <script src="scripts/op.js"></script>
+    </head>
+    <center>
+    <div class="container" style="position: relative;
+    margin-top:0%; ">
+        <table style="direction: rtl; " ><tr><td width="30%">
+        <div>
+            
+            <form action="/userQuery" method="post" id="formS" onsubmit="return checkForm()">
+
+                <div class="form-group" style="text-align:right;">
+                    <table class="gpTable" >
+                        <tr>
+                            
+                        
+                            <td>
+                            <div class="form group has-feedback">
+                                    
+                                    <input type="text" class="form-control" placeholder="שם משתמש" name="username" id="username"/><i style="color: lightGray;" class="glyphicon glyphicon-user form-control-feedback"></i>
+                                </div>
+                            </td>
+                        
+                            
+                            <td>
+                            <div class="form group has-feedback">
+                                    
+                                    <input type="text" class="form-control" placeholder="שם פרטי" name="firstName" id="firstName"/><i style="color: lightGray;" class="glyphicon glyphicon-user form-control-feedback"></i>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            
+                            <td>
+                                <div class="form group has-feedback">
+                                    
+                                    <input type="text" class="form-control" placeholder="שם משפחה" name="lastName" id="lastName"/><i style="color: lightGray;" class="glyphicon glyphicon-user form-control-feedback"></i>
+                                </div>
+                            </td>
+                       
+                            
+                            <td>
+                            <div class="form group has-feedback">
+                                    
+                                    <input type="text" class="form-control" placeholder="דוא''ל" name="email" id="email"/><i style="color: lightGray;" class="glyphicon glyphicon-user form-control-feedback"></i>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr><td><input type="submit" style="width:100%;" value="חפש" class="btn btn-warning btn-lg"></td></tr>
+                    </table>
+                </div>
+                </td></tr><tr><td><center>
+                <div id="userWindow">
+                        <h4>username </h4><center>
+                    <table>
+                        <tr><td>שם</td><td><!-- first name --></td></tr>
+                        <tr><td>שם משפחה </td><td><!-- last name --></td></tr>
+                        <tr><td>ביקור אחרון</td><td><!-- last visit --></td></tr>
+                        <tr><td>דוא"ל</td><td><!-- email --></td></tr>
+                        <tr><td>טלפון</td><td><!-- phone --></td></tr>
+                        <tr><td>עיר</td><td><!-- city --></td></tr>
+                    </table>
+                </div></center>
+                </td></tr></table>
+            </form>
+        </div>
+        
+    </div>
+</center>
+</body>
+</html>

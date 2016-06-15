@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <title>יוצאים ללמוד</title>
+        <link rel="stylesheet" href="css/form.css"> <!-- load bootstrap css -->
+        <script type="text/javascript" src="scripts/jquery-3.0.0.min.js"></script>
+	   <script src="scripts/op.js"></script>
+    </head>
+    <body>
+        <center>
+        <div class="container" style="margin-top:0; padding: 6px; ">
+            <form action="/report" method="post" id="formS">
+                <center><table class="dates">
+                    <tr>
+                        <td id="teacherDate"></td>
+                        <td><h4>חודש</h4>
+                <select name="months">
+                    <option value="01">ינואר</option>
+                      <option value="02">פבואר</option>
+                      <option value="03">מרץ</option>
+                      <option value="04">אפריל</option>
+                    <option value="05">מאי</option>
+                    <option value="06">יוני</option>
+                    <option value="07">יולי</option>
+                    <option value="08">אוגוסט</option>
+                    <option value="09">ספטמבר</option>
+                    <option value="10">אוקטובר</option>
+                    <option value="11">נובמבר</option>
+                    <option value="12">דצמבר</option>
+                </select>
+                    </td><td><h4>שנה</h4>
+                            <select name="year" id="year">
+                        
+                            </select>
+                        </td>
+                        <td> <button type="submit" class="btn btn-warning btn-lg">חפש</button></td>
+                    </table></center>
+                   
+            </form>
+            
+        <table class="listTable">
+            <tr class="headline">
+                <td>תאריך</td>
+                <td>שעת התחלה</td>
+                <td>שעת סיום</td>
+                <td>סה"כ שעות</td>
+                <td>שם תלמיד</td>
+                <td>הערות</td>
+                
+                
+                
+                
+            </tr>
+            <tr >
+                <td>תאריך</td>
+                <td>שעת התחלה</td>
+                <td>שעת סיום</td>
+                <td>סה"כ שעות</td>
+                <td>שם תלמיד</td>
+                <td>הערות</td>
+                
+                
+                
+                
+            </tr>
+            <tr >
+                <td>תאריך</td>
+                <td>שעת התחלה</td>
+                <td>שעת סיום</td>
+                <td>סה"כ שעות</td>
+                <td>שם תלמיד</td>
+                <td>הערות</td> 
+            </tr>
+            
+        </table>
+            </div>
+            </center>
+    </body>
+</html>

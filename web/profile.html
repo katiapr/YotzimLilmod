@@ -1,0 +1,195 @@
+<!doctype html>
+<html>
+    <head>
+            <meta http-equiv="content-type" content="text/plain; charset=UTF-8"/>
+            <title>יוצאים לשינוי</title>
+            <link rel="stylesheet" type="text/css" href="css/profile.css">
+             <script type="text/javascript" src="scripts/jquery-3.0.0.min.js"></script>
+            <script src="scripts/op.js"></script>
+            
+    </head>
+    <body>
+        <script>
+            $(".hoursTable").ready(function(){
+                    /* if the user is admin */
+                    var x="<h4>מורה</h4><select name='teacherU' id='teacherU'>" ;
+                             x += "<option value='רחל'>רחל</option>";
+                            x += "<option value='רבקה'>רבקה</option>";
+                            x += "<option value='משה'>משה</option>";
+                             /*for(i=0 ; i<teachersNames ; i++){
+                                x += "<option value='"+teachersNames[i]+"'>"+teachersNames[i]+"</option>";
+                             }
+                             x += "</select>";
+                             */
+                            x += "</select>";
+                            document.getElementById("teacherDate").innerHTML = x;
+                    /* end of admin part */
+                    document.getElementById("year").innerHTML = "";
+                        for(i=0 ; i<50 ; i++){
+                            document.getElementById("year").innerHTML += "<option value='"+              (2016+i)+"'>"+(2016+i)+"</option>;";
+                        }
+                     document.getElementById("hours").innerHTML = "";
+                    for(i=0 ; i<24 ; i++){
+                        var s="";
+                        if(i<10)
+                            s="0";
+                        document.getElementById("hours").innerHTML+="<option value='"+i+"'>"+s+i+"</option>";
+                    }
+                    document.getElementById("minutes").innerHTML = "";
+                    for(i=0 ; i<60 ; i++){
+                        var s="";
+                        if(i<10)
+                            s="0";
+                        document.getElementById("minutes").innerHTML+="<option value='"+i+"'>"+s+i+"</option>";
+                    }
+                    document.getElementById("totalHours").innerHTML = "";
+                    for(i=1 ; i<17 ; i++){
+                        var s="";
+                        if(i<10)
+                            s="0";
+                        document.getElementById("totalHours").innerHTML+="<option value='"+i+"'>"+s+i+"</option>";
+                    }
+
+            });
+
+        </script>
+            <table id="mainFrame" border=0 cellspacing=0>
+                <tr id="topBarTR">
+                    <td>
+                        <table class="barTable" >
+                                <tr>
+                                    <td width=80%><div class="logo" ></div><!--<h2 id="yutzim">יוצאים לשינוי</h2>--></td>
+                                    <td width=20% >
+                                        
+                                        <a id="logout" href="/logout" >
+                                        <font class="logoutFrame">יציאה                                            
+                                        <img src="Images/logout.png" width=20px height=20px /></font>
+
+                                            </a>
+                                    </td>
+                                </tr>
+                                
+                        </table>
+                    </td>
+                </tr>
+                <tr class="menus">
+                    <td>
+                        <table>
+                            <tr>
+                                <td class="menuTable">
+                                    <div id="menuDiv">
+                                        <span onclick="showMain()">ראשי</span>
+                                        <!--<% if(user.admin=='1'){ %>-->
+                                        <!-- ONLY FOR ADMINS -->
+                                        <span class="adminMenu">מורים
+                                            <div id="sideM">
+                                                <div class="myButton" onclick="lists(this.id,'lists.html')">רשימת מורים</div>
+                                                <div class="myButton" id="teacherP" onclick="signup(this.id)">הוספת מורה </div>
+                                           
+                                                
+                                            </div>
+                                        </span>
+                                        <span class="adminMenu">תלמידים
+                                            <div id="sideM">
+                                                <div class="myButton" onclick="lists(this.id,'listsS.html')">רשימת תלמידים</div>
+                                                <div class="myButton" id="studentP" onclick="signup(this.id)">הוספת תלמיד </div>
+                                                                                 
+                                            </div>
+                                        </span>
+                                        
+                                        <span onclick="userQuery()">פרטי משתמש</span>
+                                        <!--<% } %>-->
+                                        <span>דו"חות
+                                            <div id="sideM">
+                                                <!-- <% if (admin=="1") { %> -->
+                                                <!-- ONLY FOR ADMINS -->
+                                                <div class="myButton"  id="teacherP" onclick="lists('all','meetingsList.html')">דו"ח עבור מורה</div>
+                                                <!--<% } %>-->
+                                                <!-- <% if (admin=="0") { %> -->
+                                                <!-- ONLY FOR TEACHERS -->
+                                                <div class="myButton" onclick="inputHours()">הזנת שעות</div>
+                                                <!-- Pass the function the teacher id instead of 'specific' -->
+                                                <div class="myButton" onclick="lists('specific','meetingsList.html')">לוח דיווחים</div>
+                                                <!--<% } %>-->
+                                                
+                                            </div>
+                                        </span>
+                                        <!-- to disable inner admin options pass the user ID to controlPanel()-->
+                                        <span onclick="controlPanel()">לוח בקרה</span>
+                                        
+                                    </div>
+                                </td>
+                                <td class="opWindow">
+                                    
+                                    <div id="mainPage">
+                                        
+                                       <h4  class="labelProfile">username </h4>
+                                    <table style="direction : rtl;font-size:20px; text-decoration: none;" >
+                                        <tr><td>שם</td><td><!-- first name --></td></tr>
+                                        <tr><td>שם משפחה </td><td><!-- last name --></td></tr>
+                                        <tr><td>ביקור אחרון</td><td><!-- last visit --></td></tr>
+                                        <tr><td>דוא"ל</td><td><!-- email --></td></tr>
+                                        <tr><td>טלפון</td><td><!-- phone --></td></tr>
+                                        <tr><td>עיר</td><td><!-- city --></td></tr>
+                                    </table><h5 style="margin-bottom: 0;">ניתן לעדכן את הפרטים בלוח בקרה</h5>
+                                    </div>
+                                    <div id="framePart">
+                                        <center><iframe id="ifr" ></iframe></center>
+                                    </div>
+                                    <div id="fillHours">
+                                        <h3>הזנת שעות מפגש</h3><hr><h5>יש לבחור בתאריך, לאחר מכן יש להזין שעת התחלה וסה"כ שעות</h5>
+                                        <form action="/updateHours" method="post" id="formS" onsubmit="checkHoursForm() ">
+                                        <table class="hoursTable" >
+                                            <tr>
+                                                
+                                                    <td id="teacherDate"></td>
+                                                    
+                                                    <td><h4>חודש</h4>
+                                            <select name="months">
+                                                <option value="01">ינואר</option>
+                                                  <option value="02">פבואר</option>
+                                                  <option value="03">מרץ</option>
+                                                  <option value="04">אפריל</option>
+                                                <option value="05">מאי</option>
+                                                <option value="06">יוני</option>
+                                                <option value="07">יולי</option>
+                                                <option value="08">אוגוסט</option>
+                                                <option value="09">ספטמבר</option>
+                                                <option value="10">אוקטובר</option>
+                                                <option value="11">נובמבר</option>
+                                                <option value="12">דצמבר</option>
+                                            </select>
+                                                </td><td><h4>שנה</h4>
+                                                        <select name="year" id="year">
+
+                                                        </select>
+                                                    </td>
+                                                <td >
+                                                    <table id="inputHours">
+                                                        <tr><td colspan="2"><h4>שעת התחלה</h4></td></tr>
+                                                        <tr>
+                                                            <td><select name='minutes' id='minutes'></select></td>
+                                                            <td ><select name='hours' id='hours'></select></td>
+                                                        </tr>
+                                                    </table>
+                                                    
+                                                
+                                                    
+                                                    <td><h4>סה"כ שעות</h4><select name='totalHours' id="totalHours"></select></td>
+                                            <td><input type="submit" value="הזן" /> </td>        
+                                            </tr>
+                                        </table>
+                                            <textarea form="formS" name="notes" id="notes" placeholder="הערות"></textarea>
+                                        </form>
+                                        <h6>בטרם שליחה, יש לוודא שכל הנתונים הוזנו נכון</h6>
+                                    </div>
+                                </td>
+                                
+                                
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+    </body>
+</html>

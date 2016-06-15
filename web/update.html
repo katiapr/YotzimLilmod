@@ -1,0 +1,130 @@
+<!-- views/signup.ejs -->
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/plain; charset=UTF-8"/>
+	<title>יוצאים ללמוד</title>
+	<link rel="stylesheet" href="css/form.css"> <!-- load bootstrap css -->
+	<script src="scripts/op.js"></script>
+	<style>
+		body 		{ padding-top:80px; }
+	</style>
+</head>
+<body><div class="container">
+    <center><h1 style="margin-top:0; margin-bottom: 0;">עדכון פרטי משתמש</h1><hr id="myhr">
+
+    
+    
+<form action="/userQuery" method="post" onsubmit="return checkForm()">
+
+                <div class="form-group" style="text-align:right;">
+                    <table class="gpTable" >
+                        <tr>
+                            
+                        
+                            <td>
+                            <div class="form group has-feedback">
+                                    
+                                    <input type="text" class="form-control" placeholder="שם משתמש" name="username" id="username"/><i style="color: lightGray;" class="glyphicon glyphicon-user form-control-feedback"></i>
+                                </div>
+                            </td>
+                        
+                            
+                            <td>
+                            <div class="form group has-feedback">
+                                    
+                                    <input type="text" class="form-control" placeholder="שם פרטי" name="firstName" id="firstName"/><i style="color: lightGray;" class="glyphicon glyphicon-user form-control-feedback"></i>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            
+                            <td>
+                                <div class="form group has-feedback">
+                                    
+                                    <input type="text" class="form-control" placeholder="שם משפחה" name="lastName" id="lastName"/><i style="color: lightGray;" class="glyphicon glyphicon-user form-control-feedback"></i>
+                                </div>
+                            </td>
+                       
+                            
+                            <td>
+                            <div class="form group has-feedback">
+                                    
+                                    <input type="text" class="form-control" placeholder="דוא''ל" name="email" id="email"/><i style="color: lightGray;" class="glyphicon glyphicon-user form-control-feedback"></i>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr><td><input type="submit" style="width:100%;" value="חפש" class="btn btn-warning btn-lg"></td></tr>
+                    </table>
+        </div></form></center>
+
+    <div class="col-sm-6 col-sm-offset-3" >
+    
+	
+    <hr id="myhr"/ >
+	<!-- show any messages that come back with authentication 
+	 <% if (message.length > 0) { %> 
+		<div class="alert alert-danger"><%= message %></div>
+	<<% } %>
+    <hr>
+	<!-- AUTO FILL THE FIELDS WITH EXISTING INFORMATION -->
+	<form action="/update" method="post" id="formS">
+        <div class="form-group" style="text-align:right;">
+			<label>סיסמה ישנה</label>
+			<input type="password"  class="form-control" name="oldPassword" id="oldPassword">
+		</div>
+		<div class="form-group" style="text-align:right;">
+			<label>סיסמה חדשה</label>
+            <p> :סיסמא חייבת להכיל תוים באנגלית, מספרים או תוים מיוחדים: !,@,$,%,& </p>
+			<input type="password" class="form-control" name="password" id="password">
+		</div>
+        <div class="form-group" style="text-align:right;">
+			<label>שם פרטי</label>
+            <p>שם פרטי חייב להיות בעברית או אנגלית בלבד</p>
+			<input type="text" class="form-control" name="firstName" id="firstName">
+		</div>
+        <div class="form-group" style="text-align:right;">
+			<label>שם משפחה</label>
+            <p>שם משפחה חייב להיות בעברית או אנגלית בלבד</p>
+			<input type="text" class="form-control" name="lastName" id="lastName">
+		</div>
+        <div class="form-group" style="text-align:right;">
+			<label>דואר אלקטרוני</label>
+			<input type="text" class="form-control" name="email" id="email">
+		</div>
+        <div class="form-group" style="text-align:right;">
+			<label>עיר </label>
+			<input type="text" class="form-control" name="city" id="city">
+		</div>
+        <div class="form-group" style="text-align:right;">
+			<label>טלפון</label>
+			<input type="text" class="form-control" name="phone" id="phone">
+		</div>
+        <!-- <% if(user,admin='1'){ %> -->
+        <!-- ONLY FOR ADMINS to remove it pass this function the user id -->
+        <div class="form-group"  id="adminPrev" style="text-align:right;">
+            <label>הרשאות</label><br>
+            <p>יש לבחור הרשאה אחת</p>
+			<div id="pervs">
+                
+                <div class="myRadio"><h4>מנהל</h4><input type="checkbox" value="0" name="adminP" id="adminP" onchange="checkMe(this.id)"></div>
+                <div class="myRadio"><h4>מורה</h4><input type="checkbox" value="0" name="teacherP" id="teacherP" onchange="checkMe(this.id)"></div>
+                <div class="myRadio"><h4>תלמיד</h4><input type="checkbox" value="0" name="studentP" id="studentP" onchange="checkMe(this.id)"></div>
+                <div class="myRadio"><h4>מלגאי</h4><input disabled=true type="checkbox" value="0" name="schT" id="schT" onchange="checkMe(this.id)"></div>
+            </div>
+		</div> 
+        <!-- <% } %> -->
+        
+		<button type="button" class="btn btn-warning btn-lg" onclick="checkForm()">רשום</button>
+	</form>
+
+	<hr>
+
+	
+
+</div>
+
+</div>
+</body>
+</html>
