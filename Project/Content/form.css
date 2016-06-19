@@ -1,0 +1,163 @@
+
+@import url(http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css);
+@import url(http://fonts.googleapis.com/earlyaccess/alefhebrew.css);
+@import url(http://www.w3schools.com/lib/w3.css);
+@import url(http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css);
+@import url(../css/profile.css);
+body{
+    /*//background: linear-gradient(to bottom, rgba(132,121,119,1) 0%,rgba(73,73,73,1) 100%);*/
+    background:none;
+    
+}
+.myRadio{
+    display: inline-block;
+    width:30px;
+    margin-right: 5%;
+    text-align: center;
+    width: 80px;   
+}
+.myRadio h4{
+    margin-bottom: 0;
+}
+
+.container{
+    
+    text-align: right;
+    background: linear-gradient(to bottom, rgba(238,238,238,1) 0%,rgba(238,238,238,1) 100%);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 14px;
+    border-color: gray;
+    vertical-align: top;
+    align-content: center;
+    margin-top: -70px;
+}
+
+#pervs{
+    //background: linear-gradient(to bottom, rgba(234,239,181,1) 0%,rgba(225,233,160,1) 100%);
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 4px;
+    font-family: 'Alef Hebrew', serif;
+    text-decoration: underline;
+}
+.gpTable{
+    margin-top: 10px;
+    border-spacing: 10px;
+    border-collapse: separate;
+    color:white; 
+    //background: linear-gradient(to bottom, rgba(132,121,119,1) 0%,rgba(73,73,73,1) 100%);
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%);
+    direction: rtl; 
+    width:60%;
+    box-shadow: 3px 3px 7px gray;
+    //display: block;
+    margin-right:20%;
+    display: inline-table;
+    font-family: 'Alef Hebrew', serif;
+    
+}
+
+.gpTable label{
+    margin-left: 4px;
+}
+
+#userWindow{
+    color:black;
+    width:60%;
+    
+    display: inline-block;
+    font-family: 'Alef Hebrew', serif;
+    text-align: right;
+    box-shadow: 3px 3px 7px gray;
+    padding: 5px;
+    border-style: solid;
+    border-width: 1px;
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%);
+    //background: linear-gradient(to bottom, rgba(132,121,119,1) 0%,rgba(73,73,73,1) 100%);
+}
+#userWindow table{
+ 
+    width:100%;
+   
+    background: linear-gradient(to bottom, rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size:20px;
+    //width:400px;
+    direction: rtl;
+}
+#userWindow table tr{
+    border-style: solid;
+    border-width: 1px;
+}
+#userWindow table td{
+    width: 50%;
+    border-style:ridge;
+    border-width: 0px;
+    border-left-width: 1px;
+    
+}
+#userWindow h4{
+    margin-top:0;
+    margin-bottom:0;
+    color:white;
+    font-size: 20px;
+    font-decoration: none;
+    font-weight: 700;
+    background-color: gray;
+    
+}
+
+.listTable{
+    border-collapse: collapse;
+    direction: rtl;
+    width: 100%;
+    background: linear-gradient(to bottom, rgba(252,255,244,1) 0%,rgba(233,233,206,1) 100%);
+}
+.listTable td{
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+}
+
+.dates{
+    width: 400px;
+   
+    direction: rtl;
+    text-align: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px gray;
+    color:white;
+    background: linear-gradient(to bottom, rgba(132,121,119,1) 0%,rgba(73,73,73,1) 100%);
+}
+.dates select{
+    font-family: 'Alef Hebrew', serif;
+    background-color: lightGray;
+    border-radius: 5px;
+    margin-bottom: 3px;
+}
+.dates h4{
+    margin-bottom:0;
+    margin-top:0;
+}
+.headline{
+    color: white;
+     background: linear-gradient(to bottom, rgba(132,121,119,1) 0%,rgba(73,73,73,1) 100%);
+}
+.dates select{
+    color: black;
+}
+
+#myhr{
+    border-color: gray;
+    border-width: 2px;
+}
+form input{
+    text-align: right;
+}
