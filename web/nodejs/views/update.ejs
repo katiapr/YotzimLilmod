@@ -1,0 +1,104 @@
+<!-- views/signup.ejs -->
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/plain; charset=UTF-8"/>
+	<title>יוצאים ללמוד</title>
+	<link rel="stylesheet" href="css/form.css"> <!-- load bootstrap css -->
+	<script src="scripts/op.js"></script>
+	<style>
+		body 		{ padding-top:80px; }
+	</style>
+</head>
+<body><div class="container">
+    <center><h1 style="margin-top:0; margin-bottom: 0;">עדכון פרטי משתמש</h1><hr id="myhr">
+
+    
+
+	<!-- AUTO FILL THE FIELDS WITH EXISTING INFORMATION -->
+	<form action="/update" method="post" name="formS" id="formS" onsubmit="return checkForm()">
+        <% if(user.student!='1' && user.admin=='1' && user.teacher!='1') { %>            
+            <div class="myRadio" style="display: none;"><input type="checkbox" value="<%= user.id %>" name="uIDs" id="uIDs" checked="false"></div>
+        <% } else if(user.teacher=='1') { %>
+            <div class="myRadio" style="display: none;"><input type="checkbox" value="<%= user.id %>" name="uIDs" id="uIDs" checked="false"></div>
+        <% } else if(user.student=='1'){%>
+            <div class="myRadio" style="display: none;"><input type="checkbox" value="<%= user.id %>" name="uIDs" id="uIDs" checked="false"></div>
+        <% } %>
+           
+        <% if(user.student=='0') { %>
+        
+        <% if( (user.super!='1' && user.admin=='0' && user.teacher=='1') || user.teacher=='0') { %>
+        <div class="form-group" style="text-align:right;">
+			<label>סיסמה ישנה</label>
+			<input type="password"  class="form-control" name="oldPassword" id="oldPassword">
+		</div>
+		<div class="form-group" style="text-align:right;">
+			<label>סיסמה חדשה</label>
+            <p> :סיסמא חייבת להכיל תוים באנגלית, מספרים או תוים מיוחדים: !,@,$,%,& </p>
+			<input type="password" class="form-control" name="password" id="password">
+		</div>
+        <% } %>
+        <div class="form-group" style="text-align:right;">
+			<label>שם פרטי</label>
+            <p>שם פרטי חייב להיות באנגלית בלבד</p>
+			<input type="text" class="form-control" name="firstName" id="firstName" value="<%= user.first_name %>">
+		</div>
+        <div class="form-group" style="text-align:right;" >
+			<label>שם משפחה</label>
+            <p>שם משפחה חייב להיות באנגלית בלבד</p>
+			<input type="text" class="form-control" name="lastName" id="lastName" value="<%= user.last_name %>">
+		</div>
+        <% } else { %>
+        <div class="form-group" style="text-align:right;">
+			<label>שם פרטי</label>
+            <p>שם פרטי חייב להיות באנגלית בלבד</p>
+			<input type="text" class="form-control" name="firstName" id="firstName" value="<%= user.firstname %>">
+		</div>
+        <div class="form-group" style="text-align:right;" >
+			<label>שם משפחה</label>
+            <p>שם משפחה חייב להיות באנגלית בלבד</p>
+			<input type="text" class="form-control" name="lastName" id="lastName" value="<%= user.lastname %>">
+		</div>
+        <% } %>
+        <div class="form-group" style="text-align:right;">
+			<label>דואר אלקטרוני</label>
+			<input type="text" class="form-control" name="email" id="email" value="<%= user.email %>">
+		</div>
+         
+        <div class="form-group" style="text-align:right;">
+			<label>עיר </label>
+			<input type="text" class="form-control" name="city" id="city" value="<%= user.city %>">
+		</div>
+        <div class="form-group" style="text-align:right;">
+			<label>טלפון</label>
+			<input type="text" class="form-control" name="phone" id="phone" value="<%= user.phone %>">
+		</div>
+        
+         <div class="myRadio" style="display: none;"><h4>מלגאי</h4><input type="checkbox" value="<%= user.admin %>" name="p[admin]" id="adminP" onchange="checkMe(this.id)" checked="false"></div>
+        <div class="myRadio" style="display: none;"><h4>מלגאי</h4><input type="checkbox" value="<%= user.teacher %>" name="p[teacher]" id="schT" onchange="checkMe(this.id)" checked="false"></div>
+        <div class="myRadio" style="display: none;"><h4>מלגאי</h4><input type="checkbox" value="<%= user.student %>" name="p[student]" id="schT" onchange="checkMe(this.id)" checked="false"></div>
+        
+        
+        <!-- ONLY FOR ADMINS to remove it pass this function the user id -->
+        <div class="form-group"  id="adminPrev" style="text-align:right;">
+            <% if((user.super && user.super=='1') ||  user.admin=='1'){ %> 
+                <% if(user.teacher=='1') { %>
+                <div class="myRadio"><h4>מלגאי</h4><input type="checkbox" value="1" name="p[schT]" id="schT" onchange="checkMe(this.id)" checked="true" ></div>
+                <% } else { %>
+                <div class="myRadio" style="display: none;"><h4>מלגאי</h4><input type="checkbox" value="0" name="p[schT]" id="schT" onchange="checkMe(this.id)" checked="false"></div>
+                <% } %>
+       
+		
+	
+         
+
+	
+        <% } %>
+           
+</div>   <input type="submit" style="display:inline;" form="formS" class="btn btn-warning btn-lg" value="עדכן">
+	<hr>
+       
+        </form>
+</div>
+</body>
+</html>

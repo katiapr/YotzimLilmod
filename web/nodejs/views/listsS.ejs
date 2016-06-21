@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>יוצאים ללמוד</title>
+        <link rel="stylesheet" href="css/form.css"> <!-- load bootstrap css -->
+        <script type="text/javascript" src="scripts/jquery-3.0.0.min.js"></script>
+	   <script src="scripts/op.js"></script>
+    </head>
+    <body>
+        <center>
+        <table class="listTable">
+            <tr class="headline">
+                <td> שם פרטי</td>
+                <td>שם משפחה</td>
+                <td>טלפון</td>
+                <td>דוא"ל</td>
+                <td>עיר</td>
+                <td colspan="2">פעולות</td>
+                
+                
+            </tr>
+            <% var i; for(i=0 ; i<students.length ; i++){ %>
+                <form method="post" action="" id="listForm<%= students[i].id %>">
+                <tr>
+                    <td style="display: none;"><input type="text" value="<%= students[i].id %> " name="hidID"/></td>
+                    <td><%= students[i].firstname %></td>
+                    <td><%= students[i].lastname %></td>
+                    <td><%= students[i].phone %></td>
+                    <td><%= students[i].email %></td>
+                    <td><%= students[i].city %></td>
+                    
+                    <td width="20px"><button type="sumbit" style="border-radius:0px;" id="<%= students[i].id %>" onclick="editStudent(this.id)" class="btn btn-warning btn-lg">ערוך</button></td>
+                    <td width="20px"><button type="sumbit" style="border-radius:0px;" id="<%= students[i].id %>" onclick="deleteStudent(this.id)" class="btn btn-warning btn-lg">מחק</button></td></form></tr>
+            <% } %>
+        </table>
+            </center>
+    </body>
+</html>

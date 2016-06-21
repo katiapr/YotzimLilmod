@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title>יוצאים ללמוד</title>
+        <link rel="stylesheet" href="css/form.css"> <!-- load bootstrap css -->
+        <script type="text/javascript" src="scripts/jquery-3.0.0.min.js"></script>
+	   <script src="scripts/op.js"></script>
+    </head>
+    <body>
+        <center>
+            
+            
+        <table class="listTable" style="text-align: center; overflow-y:auto;">
+            <tr class="headline">
+                <td style="display:none;"></td>
+                <td>שם משתמש</td>
+                <td> שם פרטי</td>
+                <td>שם משפחה</td>
+                <td>טלפון</td>
+                <td>דוא"ל</td>
+                <td>עיר</td>
+                <td>מלגאי</td>
+                <td colspan=2>פעולות</td>
+            </tr>
+            <% var i; for(i=0 ; i<teachers.length ; i++){ %>
+                <form method="post" action="" id="listForm<%= teachers[i].id %>">
+                <tr>
+                    <td style="display: none;"><input type="text" value="<%= teachers[i].id %> " name="hidID"/></td>
+                    <td><%= teachers[i].username %></td>
+                    <td><%= teachers[i].firstname %></td>
+                    <td><%= teachers[i].lastname %></td>
+                    <td><%= teachers[i].phone %></td>
+                    <td><%= teachers[i].email %></td>
+                    <td><%= teachers[i].city %></td>
+                    <% if(teachers[i].scholar == '1'){ %>
+                    <td>כן</td>
+                    <% } else { %>
+                    <td>לא</td>
+                    <% }%>
+                    <td width="20px"><button type="sumbit" style="border-radius:0px;" id="<%= teachers[i].id %>" onclick="editTeacher(this.id)" class="btn btn-warning btn-lg">ערוך</button></td>
+                    <td width="20px"><button type="sumbit" style="border-radius:0px;" id="<%= teachers[i].id %>" onclick="deleteTeacher(this.id)" class="btn btn-warning btn-lg">מחק</button></td></form></tr>
+            <% } %>
+                
+        </table>
+            </center>
+    </body>
+</html>
