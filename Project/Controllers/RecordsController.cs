@@ -16,7 +16,7 @@ namespace YotzimLilmod.Controllers
         {
             return View();
         }
-        public ActionResult ShowTeacherRecords()
+        public ActionResult ShowTeachersRecords()
         {
             List<User> teacherList = TeacherDAL.GetAllTeachers();
 
@@ -26,21 +26,36 @@ namespace YotzimLilmod.Controllers
             };
             return View(m);
         }
-        public ActionResult ChangeDataDetailesTeachers()
+        public ActionResult ChangeDataDetailesTeachers(int? id)
         {
-            var user = TeacherDAL.GetTeacherByUserID(Convert.ToInt32(1));
+            var user = TeacherDAL.GetTeacherByUserID(Convert.ToInt32(id));
             UserModels m = new UserModels
             {
+                UserID = user.UserID,
                 UserName = user.UserName,
                 UserFirstName = user.UserFirstName,
                 UserLastName = user.UserLastName,
                 UserCity = user.UserCity,
                 userEmail = user.userEmail,
                 Password = user.Password,
-                UserPhoneNumber = user.UserPhoneNumber
+                UserPhoneNumber = user.UserPhoneNumber,
+                UserIDNumber = user.UserIDNumber
 
             };
-            return View(m);
+            return View("UpdateTeacherDetails", m);
+        }
+
+
+
+        public ActionResult UpdateTeacherDetails(User u, int? id)
+        {
+            TeacherDAL.UpdateTeacherDetails(id, u.UserIDNumber, u.UserName, u.UserFirstName, u.UserLastName, u.userEmail, u.UserCity, u.UserPhoneNumber);
+            var teachersList = TeacherDAL.GetAllTeachers();
+            TeacherListModels m = new TeacherListModels
+            {
+                TeacherList = teachersList
+            };
+            return View("ShowTeachersRecords", m);
         }
         public ActionResult ShowStudentsRecords()
         {
@@ -52,13 +67,34 @@ namespace YotzimLilmod.Controllers
             };
             return View(m);
         }
-       
-        public ActionResult ChangeDataDetailesStudent(int? k)
+
+        public ActionResult ChangeDataDetailesStudents(int? id)
         {
-            return RedirectToAction("ShowStudentsRecords");
+
+            var student = StudentDAL.GetStudentsByID(id);
+            StudentModel m = new StudentModel
+            {
+                StudentID = student.StudentID,
+                StudentName = student.StudentName,
+                StudentLastName = student.StudentLastName,
+                StudentCity = student.StudentCity,
+                StudentEmail = student.StudentEmail,
+                studentPhoneNumber = student.StudentPhoneNumber,
+                StudentIDNumber = student.StudentIDNumber,
+                Course = student.Course,
+                Note = student.Note
+
+            };
+            return View("UpdateStudentDetails", m);
         }
-        public ActionResult DeleteStudent(string k)
+        public ActionResult DeleteStudent(int? id)
         {
+            StudentDAL.DeleteStudent(id);
+            var list = StudentDAL.GetAllStudents();
+            StudentsListModels m = new StudentsListModels
+            {
+                StudentsList = list
+            };
             return RedirectToAction("ShowStudentsRecords");
         }
         public ActionResult SearchUserPage()
@@ -67,21 +103,21 @@ namespace YotzimLilmod.Controllers
         }
         public ActionResult SearchUser(User u)
         {
-           
+
             User user = null;
             if (u.UserIDNumber == 0)
             {
-                 user = UserDAL.GetUserByNameEmail(u.UserFirstName, u.UserLastName, u.userEmail);
+                user = UserDAL.GetUserByNameEmail(u.UserFirstName, u.UserLastName, u.userEmail);
             }
             else
             {
                 user = UserDAL.GetUserByIDNumber(u.UserIDNumber);
             }
-            if(user == null)
+            if (user == null)
             {
-                return View("UserProfile","Home");
+                return View("UserProfile", "Home");
             }
-            UserModels m  = new UserModels
+            UserModels m = new UserModels
             {
                 UserFirstName = user.UserFirstName,
                 UserLastName = user.UserLastName,
@@ -119,6 +155,23 @@ namespace YotzimLilmod.Controllers
                 StudentCity = student.StudentCity
             };
             return View(m);
+        }
+        public ActionResult UpdateStudentDetails(Student s, int? id)
+        {
+            StudentDAL.UpdateStudentByID(id, s.StudentName, s.StudentLastName, s.StudentEmail, s.StudentPhoneNumber, s.StudentCity, s.StudentIDNumber, s.Course, s.Note);
+
+            return RedirectToAction("ShowStudentsRecords");
+        }
+
+        public ActionResult DeleteTeacher(int? id)
+        {
+            TeacherDAL.DeleteTeacher(id);
+            var list = TeacherDAL.GetAllTeachers();
+            TeacherListModels m = new TeacherListModels
+            {
+                TeacherList = list
+            };
+            return View("ShowTeachersRecords", m);
         }
     }
 }
