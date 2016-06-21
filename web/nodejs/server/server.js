@@ -8,7 +8,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var app      = express();
-var port     = process.env.PORT || 8080;
+var port     = process.env.PORT || 8081;
 
 var passport = require('passport');
 var flash    = require('connect-flash');
@@ -27,7 +27,8 @@ app.use(bodyParser.urlencoded({
 	extended: true
 }));
 app.use(bodyParser.json());
-
+app.use(express.static('public'));
+app.use(express.static('files'));
 app.set('view engine', 'ejs'); // set up ejs for templating
 
 // required for passport
