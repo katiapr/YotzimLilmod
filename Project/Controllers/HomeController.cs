@@ -50,7 +50,10 @@ namespace YotzimLilmod.Controllers
                     Session["UserLastName"] = v.UserLastName.ToString();
                     Session["UserEmail"] = v.userEmail.ToString();
                     Session["Access"] = v.Access.ToString();
+                    Session["UserPhoneNumber"] = v.UserPhoneNumber.ToString();
+                    Session["UserEmail"] = v.userEmail.ToString();
                     Session["UserLastUpdate"] = v.UserLastUpdate.ToString();
+                    Session["UserCity"] = v.UserCity.ToString();
                     return RedirectToAction("UserProfile");
                     
                 }
