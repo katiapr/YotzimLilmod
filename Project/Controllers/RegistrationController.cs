@@ -52,6 +52,7 @@ namespace YotzimLilmod.Controllers
             return View();
         }
         public ActionResult RegisterTeacher(User u)
+        
         {
             if (u.UserFirstName == null)
                 return View();
@@ -62,12 +63,8 @@ namespace YotzimLilmod.Controllers
                 access = 2;
             if (u.isTeacher)
                 access = 3;
-            int resp = TeacherDAL.SetTeacher(userName, u.UserFirstName.ToString(), u.UserLastName.ToString(), password, u.UserPhoneNumber, u.userEmail.ToString(), u.UserCity.ToString(), access);
-            //GeneralRequestModels r = new GeneralRequestModels
-            //{
-            //    code = resp,
-            //    Message = "CreateAccount"
-            //};
+            int resp = TeacherDAL.SetTeacher(userName, u.UserFirstName.ToString(), u.UserLastName.ToString(), password, u.UserPhoneNumber, u.userEmail.ToString(), u.UserCity.ToString(), access,u.UserIDNumber);
+
             if (resp == 0)
             {
                 UserModels m = new UserModels()
@@ -103,6 +100,7 @@ namespace YotzimLilmod.Controllers
                 {
                     StudentName = s.StudentName,
                     StudentLastName = s.StudentLastName,
+                    StudentIDNumber = s.StudentIDNumber,
                     studentPhoneNumber = s.StudentPhoneNumber,
                     StudentEmail = s.StudentEmail,
                     StudentCity = s.StudentCity,
