@@ -9,16 +9,15 @@ namespace YotzimLilmod.Entities
     public class Hours:Entity<Hours>
     {
         public int HoursID { get; set; }
-        public string TeacherName { get; set; }
-        public string TeacherLastName { get; set; }
-
-        public string StudentName { get; set; }
-        public string StudentLastName { get; set; }
 
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public decimal TotalHours { get; set; }
         public string Note { get; set; }
+
+        public string InputStartHours { get; set; }
+        public string InputEndHours { get; set; }
+        public string InputDate { get; set; }
 
         public Hours(DataRow row)
         {
@@ -31,10 +30,10 @@ namespace YotzimLilmod.Entities
             return new Hours
             {
                 HoursID = Convert.ToInt32(row["id"]),
-                TeacherName = Convert.ToString(row["TeacherName"]),
-                TeacherLastName = Convert.ToString(row["TeacherLastName"]),
-                StudentName = Convert.ToString(row["StudentID"]),
-                StudentLastName = Convert.ToString(row["StrudentLastName"]),
+                //TeacherName = Convert.ToString(row["TeacherName"]),
+                //TeacherLastName = Convert.ToString(row["TeacherLastName"]),
+                //StudentName = Convert.ToString(row["StudentID"]),
+                //StudentLastName = Convert.ToString(row["StrudentLastName"]),
                 StartTime = Convert.ToDateTime(row["StartTime"]),
                 EndTime = Convert.ToDateTime(row["EndTime"]),
                 TotalHours = Convert.ToDecimal(row["TotalHours"]),
