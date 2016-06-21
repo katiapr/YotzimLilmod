@@ -1,0 +1,149 @@
+@model YotzimLilmod.Models.HoursListModels
+    @{
+
+        //Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+        Layout = null;
+    }
+    @Styles.Render("~/Content/form.css")
+    @Styles.Render("~/Content/profile.css")
+    @Scripts.Render("~/Scripts/op.js")
+    <!doctype html>
+    <html>
+    <head>
+        <meta http-equiv="content-type" content="text/plain; charset=UTF-8" />
+        <title>יוצאים לשינוי</title>
+
+
+    </head>
+    <body>
+
+        <table id="mainFrame" border=0 cellspacing=0>
+            <tr id="topBarTR">
+                <td>
+                    <table class="barTable">
+                        <tr>
+                            <td width=80%><div class="logo"></div><!--<h2 id="yutzim">יוצאים לשינוי</h2>--></td>
+                            <td width=20%>
+
+                                <a id="logout" href="../Home/Index.cshtml">
+                                    <font class="logoutFrame">
+                                        יציאה
+                                        <img src="../Images/logout.png" width=20px height=20px />
+                                    </font>
+
+                                </a>
+                            </td>
+                        </tr>
+
+                    </table>
+                </td>
+            </tr>
+            <tr class="menus">
+                <td>
+                    <table>
+                        <tr>
+                            <td class="menuTable">
+                                <div id="menuDiv">
+                                    <span>@Html.ActionLink("ראשי", "UserProfile", "Home")</span>
+                                    <!--<% if(user.admin=='1'){ %>-->
+                                    <!-- ONLY FOR ADMINS -->
+                                    @if (Convert.ToInt32(Session["Access"]) == 1)
+                                    {
+                                        <span class="adminMenu">
+                                            מורים
+                                            <div id="sideM">
+                                                <div class="myButton">@Html.ActionLink("רשימת מורים", "ShowTeachersRecords", "Records", null, new { @class = "myButton" })</div>
+                                                <div class="myButton"> @Html.ActionLink("הוספת מורה", "RegisterTeacher", "Registration", null, new { @class = "myButton" })</div>
+                                            </div>
+
+                                        </span>
+                                        <span class="adminMenu">
+                                            תלמידים
+                                            <div id="sideM">
+                                                @* <div class="myButton">@Html.ActionLink("רשימת תלמידים", "ShowStudentsRecords", "Records", new { @class = "myButton" })</div>*@
+                                                <div class="myButton">@Html.ActionLink("רשימת תלמידים", "ShowStudentsRecords", "Records", null, new { @class = "myButton" }) </div>
+                                                <div class="myButton">@Html.ActionLink("הוספת תלמיד", "CreateStudent", "Registration", null, new { @class = "myButton" }) </div>
+
+                                            </div>
+                                        </span>
+
+                                    }
+                                    <span class="adminMenu">
+                                        חיפוש
+                                        <div id="sideM">
+                                            @if (Convert.ToInt32(Session["Access"]) == 1)
+                                            {
+                                                <div class="myButton">@Html.ActionLink("חיפוש מורה/רכז", "SearchUserPage", "Records", null, new { @class = "myButton" })</div>
+                                            }
+                                            <div class="myButton">@Html.ActionLink("חיפוש תלמיד", "SearchStudentPage", "Records", null, new { @class = "myButton" }) </div>
+
+                                        </div>
+                                    </span>
+
+                                    <!--<% } %>-->
+                                    <span>
+                                        דו"חות
+                                        <div id="sideM">
+                                            <!-- <% if (admin=="1") { %> -->
+                                            <!-- ONLY FOR ADMINS -->
+                                            @if (Convert.ToInt32(Session["Access"]) == 1)
+                                            {
+                                                <div class="myButton" id="teacherP">דו"ח עבור מורה</div>
+                                            }
+                                            <!--<% } %>-->
+                                            <!-- <% if (admin=="0") { %> -->
+                                            <!-- ONLY FOR TEACHERS -->
+                                            @if (Convert.ToInt32(Session["Access"]) == 2)
+                                            {
+                                                <span>@Html.ActionLink("הזנת שעות", "AddHours", "Reports")</span>
+                                                <span>@Html.ActionLink("רשימת שעות", "ShowTeacherHoursList", "Reports")</span>
+                                            }
+                                        </div>
+                                    </span>
+                                    <!-- to disable inner admin options pass the user ID to controlPanel()-->
+                                    <span>@Html.ActionLink("לוח בקרה", "ChangeUserDetailsPage", "Registration")</span>
+
+                                </div>
+                            </td>
+                            <td class="opWindow">
+                                <div id="mainPage">
+
+                                    <h4 class="labelProfile">@String.Format("שלום, {0} {1}", Session["UserFirstName"], Session["UserLastName"])</h4>
+                                    <table class="listTable" style="direction : rtl;font-size:20px; text-decoration: none;">
+                                        <thead>
+                                            <tr class="headline">
+                                                <td>התחלה</td>
+                                                <td>סיום</td>
+                                                <td>סה''כ</td>
+                                                <td>הערה</td>
+
+                                                <td colspan="2">פעולות</td>
+                                        </thead>
+                                        <tbody>
+                                            @if (Model.TeacherHoursList != null)
+                                            {
+
+                                                foreach (var item in Model.TeacherHoursList)
+                                                {
+                                                    <tr>
+                                                        <td>@item.StartTime</td>
+                                                        <td>@item.EndTime</td>
+                                                        <td>@item.TotalHours</td>
+                                                        <td>@item.Note</td>
+                                                     
+                                                       @* <td>@Html.ActionLink("ערוך", "ChangeHoursDetails", "Records", "", "", "", routeValues: new { Id = item.HoursID }, htmlAttributes: new { @class = "btn btn-warning btn-lg" })</td>*@
+                                                        <td>@Html.ActionLink("מחק", "DeleteHours", "Reports", "", "", "", routeValues: new { Id = item.HoursID }, htmlAttributes: new { @class = "btn btn-warning btn-lg", id = item.HoursID, @onclick = "return addListener(this.id)" })</td>
+                                                    </tr>
+                                                }
+                                            }
+                                        </tbody>
+                                    </table><h4 style="margin-bottom: 0;"></h4>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
