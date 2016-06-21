@@ -1,0 +1,86 @@
+@model YotzimLilmod.Models.UserModels
+@{
+    Layout = null;
+}
+@Styles.Render("~/Content/profile.css")
+@Styles.Render("~/Content/form.css")
+@Scripts.Render("~/Scripts/op.js")
+<!-- views/signup.ejs -->
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/plain; charset=UTF-8" />
+    <title>יוצאים ללמוד</title>
+    <link rel="stylesheet" href="~/Content/form.css"> <!-- load bootstrap css -->
+    <script type="text/javascript" src="scripts/jquery-3.0.0.min.js"></script>
+    <script src="scripts/op.js"></script>
+
+    <style>
+        body {
+            padding-top: 80px;
+        }
+    </style>
+</head>
+<body>
+    <a id="logout" href="~/Records/ShowTeachersRecords" class="logoutFrame" style="color:white;width:50px; position:fixed; text-align:center;">חזור</a>
+        <div class="container">
+            <div class="col-sm-6 col-sm-offset-3">
+
+                <h1 style="text-align:right;"><span class="fa fa-sign-in"></span> עדכון פרטים</h1>
+
+                <!-- show any messages that come back with authentication
+                 <% if (message.length > 0) { %>
+                    <div class="alert alert-danger"><%= message %></div>
+                <<% } %>
+                <hr>
+                <!-- LOGIN FORM -->
+@*@using (@Html.BeginForm("UpdateTeacherDetails", "Records",routeValues: new { Id = @Model.UserID },,htmlAttributes: new { @onsubmit = "return checkForm()" }))*@
+
+                @using (@Html.BeginForm("UpdateTeacherDetails", "Records", new { Id = @Model.UserID } ,FormMethod.Post, htmlAttributes: new { @onsubmit = "return checkForm()" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group" style="text-align:right;">
+                        <label>שם משתמש</label>
+                        <p>חייב להיות באנגלית בלבד</p>
+
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @Value = @Model.UserName })
+                    </div>
+                    <div class="form-group" style="text-align:right;">
+                        <label>שם פרטי</label>
+                        <p>שם פרטי חייב להיות בעברית או אנגלית בלבד</p>
+
+                        @Html.TextBoxFor(m => m.UserFirstName, new { @class = "form-control", @Value = @Model.UserFirstName })
+                    </div>
+                    <div class="form-group" style="text-align:right;">
+                        <label>שם משפחה</label>
+                        <p>שם משפחה חייב להיות בעברית או אנגלית בלבד</p>
+                        @Html.TextBoxFor(m => m.UserLastName, new { @class = "form-control", @Value = @Model.UserLastName })
+                    </div>
+                    <div class="form-group" style="text-align:right;">
+                        <label>תעודת זהות</label>
+                        @Html.TextBoxFor(m => m.UserIDNumber, new { @class = "form-control", @Value = @Model.UserIDNumber })
+                    </div>
+                    <div class="form-group" style="text-align:right;">
+                        <label>דואר אלקטרוני</label>
+                        @Html.TextBoxFor(m => m.userEmail, new { @class = "form-control", @Value = @Model.userEmail })
+                    </div>
+                    <div class="form-group" style="text-align:right;">
+                        <label>עיר </label>
+                        @Html.TextBoxFor(m => m.UserCity, new { @class = "form-control", @Value = @Model.UserCity })
+                    </div>
+
+                    <div class="form-group" style="text-align:right;">
+                        <label>טלפון</label>
+                        @Html.TextBoxFor(m => m.UserPhoneNumber, new { @class = "form-control", @Value = @Model.UserPhoneNumber })
+                    </div>
+                    <button type="submit" class="btn btn-warning btn-lg">עדכן</button>
+                }
+
+                <hr>
+
+            </div>
+
+        </div>
+</body>
+
+</html>
