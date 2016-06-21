@@ -3,7 +3,7 @@
 @import url(http://fonts.googleapis.com/earlyaccess/alefhebrew.css);
 @import url(http://www.w3schools.com/lib/w3.css);
 @import url(http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css);
-@import url(../css/profile.css);
+@import url(profile.css);
 body{
     /*//background: linear-gradient(to bottom, rgba(132,121,119,1) 0%,rgba(73,73,73,1) 100%);*/
     background:none;
