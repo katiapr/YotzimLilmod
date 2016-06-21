@@ -3,33 +3,45 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
-using YotzimLilmod.YotzimLilmodDAL;
 
 namespace YotzimLilmod.Entities
 {
-    public class Teacher : Entity<Teacher>
+    public class Student : Entity<Student>
     {
+        public int StudentID { get; set; }
+        public string StudentName { get; set; }
+        public string StudentLastName { get; set; }
+        public string StudentEmail { get; set; }
+        public string StudentPhoneNumber { get; set; }
+        public string StudentCity { get; set; }
+        public string Course { get; set; }
+        public string Note { get; set; }
         public int TeacherID { get; set; }
-        public string TeacherName { get; set; }
-        public string TeacherLastName { get; set; }
+        public int StudentIDNumber { get; set; }
 
-        public Teacher(DataRow row)
+
+        public Student(DataRow data)
         {
-            FillData(row);
+            FillData(data);
         }
 
-        public Teacher()
+        public Student() { }
+        internal  Student FillData(DataRow row)
         {
-
-        }
-        internal Teacher FillData(DataRow row)
-        {
-            return new Teacher
+            return new Student()
             {
-                TeacherID = Convert.ToInt32(row["UserID"]),
-                TeacherName = Convert.ToString(row["UserName"]),
-                TeacherLastName = Convert.ToString(row["UserLastName"])
+                StudentID = Convert.ToInt32(row["StudentID"]),
+                StudentName = Convert.ToString(row["StudentName"]),
+                StudentLastName = Convert.ToString(row["StudentLastName"]),
+                StudentEmail = Convert.ToString(row["StudentEmail"]),
+                StudentPhoneNumber = Convert.ToString(row["StudentPhoneNumber"]),
+                StudentCity = Convert.ToString(row["StudentCity"]),
+                Course = Convert.ToString(row["Course"]),
+                Note = Convert.ToString(row["Note"]),
+                TeacherID = Convert.ToInt32(row["TeacherID"]),
+                StudentIDNumber = Convert.ToInt32(row["StudentIDNumber"])
             };
         }
     }
+
 }
