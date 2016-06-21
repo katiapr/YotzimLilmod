@@ -1,0 +1,169 @@
+@model YotzimLilmod.Models.UserModels
+@{
+    Layout = null;
+}
+
+@Styles.Render("~/Content/profile.css")
+@Scripts.Render("~/Scripts/op.js")
+
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/plain; charset=UTF-8" />
+    <title>יוצאים לשינוי</title>
+
+
+</head>
+<body>
+
+    <table id="mainFrame" border=0 cellspacing=0>
+        <tr id="topBarTR">
+            <td>
+                <table class="barTable">
+                    <tr>
+                        <td width=80%><div class="logo"></div><!--<h2 id="yutzim">יוצאים לשינוי</h2>--></td>
+                        <td width=20%>
+
+                            <a id="logout" href="../Home/Index.cshtml">
+                                <font class="logoutFrame">
+                                    יציאה
+                                    <img src="../Images/logout.png" width=20px height=20px />
+                                </font>
+
+                            </a>
+                        </td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+        <tr class="menus">
+            <td>
+                <table>
+                    <tr>
+                        <td class="menuTable">
+                            <div id="menuDiv">
+                                <span>@Html.ActionLink("ראשי", "UserProfile", "Home")</span>
+                                <!--<% if(user.admin=='1'){ %>-->
+                                <!-- ONLY FOR ADMINS -->
+                                @if (Convert.ToInt32(Session["Access"]) == 1)
+                                {
+                                    <span class="adminMenu">
+                                        מורים
+                                        <div id="sideM">
+                                            <div class="myButton">@Html.ActionLink("רשימת מורים", "ShowTeachersRecords", "Records", null, new { @class = "myButton" })</div>
+                                            <div class="myButton"> @Html.ActionLink("הוספת מורה", "RegisterTeacher", "Registration", null, new { @class = "myButton" })</div>
+                                        </div>
+
+                                    </span>
+                                    <span class="adminMenu">
+                                        תלמידים
+                                        <div id="sideM">
+                                            @* <div class="myButton">@Html.ActionLink("רשימת תלמידים", "ShowStudentsRecords", "Records", new { @class = "myButton" })</div>*@
+                                            <div class="myButton">@Html.ActionLink("רשימת תלמידים", "ShowStudentsRecords", "Records", null, new { @class = "myButton" }) </div>
+                                            <div class="myButton">@Html.ActionLink("הוספת תלמיד", "CreateStudent", "Registration", null, new { @class = "myButton" }) </div>
+
+                                        </div>
+                                    </span>
+
+                                }
+                                <span class="adminMenu">
+                                    חיפוש
+                                    <div id="sideM">
+                                        @if (Convert.ToInt32(Session["Access"]) == 1)
+                                        {
+                                            <div class="myButton">@Html.ActionLink("חיפוש מורה/רכז", "SearchUserPage", "Records", null, new { @class = "myButton" })</div>
+                                        }
+                                        <div class="myButton">@Html.ActionLink("חיפוש תלמיד", "SearchStudentPage", "Records", null, new { @class = "myButton" }) </div>
+
+                                    </div>
+                                </span>
+
+                                <!--<% } %>-->
+                                <span>
+                                    דו"חות
+                                    <div id="sideM">
+                                        <!-- <% if (admin=="1") { %> -->
+                                        <!-- ONLY FOR ADMINS -->
+                                        @if (Convert.ToInt32(Session["Access"]) == 1)
+                                        {
+                                            <div class="myButton" id="teacherP">דו"ח עבור מורה</div>
+                                        }
+                                        <!--<% } %>-->
+                                        <!-- <% if (admin=="0") { %> -->
+                                        <!-- ONLY FOR TEACHERS -->
+                                        @if (Convert.ToInt32(Session["Access"]) == 2)
+                                        {
+                                            <span>@Html.ActionLink("הזנת שעות", "AddHours", "Reports")</span>
+                                            <span>@Html.ActionLink("רשימת שעות", "ShowTeacherHoursList", "Reports")</span>
+                                        }
+                                    </div>
+                                </span>
+                                <!-- to disable inner admin options pass the user ID to controlPanel()-->
+                                <span>@Html.ActionLink("לוח בקרה", "ChangeUserDetailsPage", "Registration")</span>
+
+
+                            </div>
+                        </td>
+                        <td class="opWindow">
+                            <div id="mainPage">
+                                <h4 class="labelProfile">@String.Format("שלום, {0} {1}", Session["UserFirstName"], Session["UserLastName"])</h4>
+
+                                <table style="direction: rtl;width:60%;">
+                                    <tr>
+                                        <td width="50%">
+                                            <div>
+
+                                                <div class="form-group" style="text-align:right;">
+                                                    @using (@Html.BeginForm("SearchUser", "Records"))
+                                                    {
+                                                        <table>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="form group has-feedback">
+                                                                        @* <input type="text" class="form-control" placeholder="שם משתמש" name="username" id="username" />*@
+                                                                        @Html.TextBoxFor(m => m.UserFirstName, new { @class = "form-control", placeholder = "שם פרטי", style = "width:100%;position:center;" })<i style="color: lightGray;" class="glyphicon glyphicon-user form-control-feedback"></i>
+                                                                    </div>
+                                                                </td>
+
+                                                                <td>
+                                                                    <div class="form group has-feedback">
+                                                                        @Html.TextBoxFor(m => m.UserLastName, new { @class = "form-control", placeholder = "שם משפחה", style = "width:100%;position:center;" })<i style="color: lightGray;" class="glyphicon glyphicon-user form-control-feedback"></i>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="form group has-feedback">
+
+                                                                        @Html.TextBoxFor(m => m.userEmail, new { @class = "form-control", placeholder = "אימייל", style = "width:200%;position:center;" })<i style="color: lightGray;" class="glyphicon glyphicon-user form-control-feedback"></i>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="font-size:20px;color:black;">או</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="form group has-feedback">
+                                                                        @Html.TextBoxFor(m => m.UserIDNumber, new { @class = "form-control", placeholder = "תעודת זהות", style = "width:200%;" })<i style="color: lightGray;" class="glyphicon glyphicon-user form-control-feedback"></i>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr><td><input type="submit" style="width:100%;" value="חפש" class="btn btn-warning btn-lg"></td></tr>
+                                                        </table>
+                                                    }
+                                                </div>
+                                        </td>
+                                    </tr>
+
+                                </table>
+
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+
