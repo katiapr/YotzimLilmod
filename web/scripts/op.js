@@ -5,14 +5,17 @@ function showMain(){
     document.getElementById('framePart').style.display="none";
     document.getElementById('fillHours').style.display="none";
 }
-
+function parentIndex(){
+    parent.document.location.href ="/profile";
+}
 function signup(id){
         
-        document.getElementById('framePart').innerHTML = " <center><iframe id='ifr' src='Signup.html' ></iframe></center>";
+        document.getElementById('framePart').innerHTML = " <center><iframe id='ifr' src='/signup' ></iframe></center>";
         window.frames[0].onload = function(){
             //alert(document.getElementById('ifr').contentWindow.location);
             document.getElementById('ifr').contentWindow.uncheckAll();          
             document.getElementById('ifr').contentWindow.reCheckMe(id);
+             
         }
         //alert(document.getElementById('ifr').contentWindow.location);
         document.getElementById('mainPage').style.display="none";
@@ -21,7 +24,23 @@ function signup(id){
 }
 
 
+function editTeacher(id){
+    var formId = "listForm" + id;
+    document.getElementById(formId).setAttribute("action","/editTeacher");
+}
+function deleteTeacher(id){
+    var formId = "listForm" + id;
+    document.getElementById(formId).setAttribute("action","/deleteTeacher");
+}
 
+function editStudent(id){
+    var formId = "listForm" + id;
+    document.getElementById(formId).setAttribute("action","/editStudent");
+}
+function deleteStudent(id){
+    var formId = "listForm" + id;
+    document.getElementById(formId).setAttribute("action","/deleteStudent");
+}
 
 /* this controls all of the hours reports */
 function lists(id,url){
@@ -30,8 +49,10 @@ function lists(id,url){
     //document.getElementById('ifr').setAttribute("src",loc);
     
     document.getElementById('framePart').innerHTML = " <center><iframe id='ifr' src='"+loc+"' ></iframe></center>";
+    
     window.frames[0].onload = function(){
         //alert(document.getElementById('ifr').contentWindow.location.href)  ;
+        
         if(id=="all"){
             
             var x="<h4>מורה</h4><select name='teacherU' id='teacherU'>" ;
@@ -47,8 +68,10 @@ function lists(id,url){
             document.getElementById('ifr').contentWindow.document.getElementById("teacherDate").innerHTML = x;
             
         }
-        else
+        else{
             document.getElementById('ifr').contentWindow.document.getElementById("teacherDate").style.display ="none";
+        
+        }
          document.getElementById('ifr').contentWindow.document.getElementById("year").innerHTML = "";
         for(i=0 ; i<50 ; i++){
             document.getElementById('ifr').contentWindow.document.getElementById("year").innerHTML += "<option value='"+              (2016+i)+"'>"+(2016+i)+"</option>;";
@@ -70,7 +93,7 @@ function userQuery(id){
 }
 
 function controlPanel(id){
-    var loc= "update.html";
+    var loc= "/update";
     document.getElementById('framePart').innerHTML = " <center><iframe id='ifr' src='"+loc+"' ></iframe></center>";
     window.frames[0].onload = function(){
         if(id){
@@ -125,15 +148,30 @@ function inputHours(){
         document.getElementById("fillHours").style.display = "inline"; 
 }
 
+function disableInput(id){
+    document.getElementById(id).disabled=true;
+    document.getElementById(id).style.display="none";
+    document.getElementById(id).parentElement.style.display="none";
+}
 function reCheckMe(id){
     document.getElementById(id).checked = true;
+    if(id=="teacherP"){
+        document.getElementById("pervs").style.display="inline-block";
+        var x = document.getElementsByClassName("myRadio");
+        var i;
+        for(i=0 ; i<x.length ; i++){
+            if(x[i].id!="sch")
+                x[i].style.display="none";
+        }
+        
+    }
+    else if(id=="studentP"){
+        disableInput("username");
+        disableInput("password");
+    }
     checkMe(id);
 }
 function checkMe(id){
-    
-    var x = document.getElementById(id).value;
-    var cb = "f";
-    
 
     if(document.getElementById(id).checked){
         document.getElementById(id).value="1";
@@ -141,26 +179,7 @@ function checkMe(id){
     else
         document.getElementById(id).value="0";
         
-    if(checkBox()=="f"){
-        
-         document.getElementById(id).checked = !document.getElementById(id).checked;
-        document.getElementById(id).value="0";
-    }
-    else if(id=="teacherP" ){ 
-        if(!document.getElementById(id).checked)
-            document.getElementById("schT").disabled= true;
-        else{
-            document.getElementById("schT").disabled= false;
-            document.getElementById("schT").checked = false;
-            document.getElementById("schT").value="0";
-        }
-        
-    }
-    if(document.getElementById("schT").disabled)
-    {
-        document.getElementById("schT").checked = false;
-        document.getElementById("schT").value="0";
-    }
+    
 
     
 }
@@ -168,22 +187,14 @@ function checkMe(id){
 
 function checkForm(){
     var checkBox =false;
+    alert(document.getElementById("adminP").value +" "+document.getElementById("teacherP").value+" "+document.getElementById("studentP").value);
     if(document.getElementById("oldPassword") && document.getElementById("oldPassword").value.length==0){
         document.getElementById("oldPassword").style.borderColor="red";
         alert("אנא הכנס את הסיסמה הישנה");
         return false;
     }
-    if(document.getElementById("adminP") && document.getElementById("teacherP") && document.getElementById("studentP")){
-         checkBox = true;
-        var x1 = (document.getElementById("adminP").value)=="0";
-        var x2 = (document.getElementById("teacherP").value)=="0";
-        var x3 = (document.getElementById("studentP").value)=="0";
-        if(x1 && x2 && x3){
-            alert("אנא בחר הרשאה עבור המשתמש");
-            return false;
-        }
-    }
-    if(document.getElementById("username")){
+    
+    if(document.getElementById("username") && !document.getElementById("username").disabled ){
         var english = /^[A-Za-z0-9]*$/;
         var x1 = document.getElementById("username").value;
         if(x1.length<6){
@@ -199,7 +210,7 @@ function checkForm(){
         else
             document.getElementById("username").style.borderColor="lightGreen";
     }
-    if(document.getElementById("password")){
+    if(document.getElementById("password") && !document.getElementById("password").disabled){
         var english = /^[A-Za-z0-9!@#$%&]*$/;
         x1 = document.getElementById("password").value;
         if(x1.length<6){
@@ -216,7 +227,7 @@ function checkForm(){
             document.getElementById("password").style.borderColor="lightGreen";
     }
     if(document.getElementById("firstName")){
-        var english = /^[A-Za-z]*$/;
+        var english = /^[A-Za-z ]*$/;
         var hebrew = /^[א-ת]*$/;
         var x1 = document.getElementById("firstName").value;
         if(x1.length<2){
@@ -224,8 +235,8 @@ function checkForm(){
             alert(" שם פרטי חייב להכיל שני תוים או יותר")
             return false;
         }
-        else if((english.test(x1) && hebrew.test(x1)) || (!english.test(x1) && !hebrew.test(x1))){
-            alert("אנא הכנס שם פרטי באנגלית או עברית");
+        else if((english.test(x1)) || (!english.test(x1) && !hebrew.test(x1))){
+            alert("אנא הכנס שם פרטי באנגלית");
             document.getElementById("firstName").style.borderColor="red";
             return false;
         }
@@ -239,8 +250,8 @@ function checkForm(){
             document.getElementById("lastName").style.borderColor="red";
             return false;
         }
-        else if((english.test(x1) && hebrew.test(x1)) || (!english.test(x1) && !hebrew.test(x1))){
-            alert("אנא הכנס שם משפחה באנגלית או עברית");
+        else if((english.test(x1)) || (!english.test(x1) && !hebrew.test(x1))){
+            alert("אנא הכנס שם משפחה באנגלית");
             document.getElementById("lastName").style.borderColor="red";
             return false;
         }
@@ -257,6 +268,38 @@ function checkForm(){
         }
         else
             document.getElementById("email").style.borderColor="lightGreen";
+    }
+    if(document.getElementById("phone")){
+        var number = /^[0-9]*$/;
+        if(document.getElementById("phone").value.length < 9){
+            document.getElementById("phone").style.borderColor="red";
+                alert("מספר טלפון קצר מדי");
+                return false;
+        }
+        else if(!number.test(document.getElementById("phone").value)){
+            document.getElementById("phone").style.borderColor="red";
+                alert("מספר טלפון מכיל תוים לא חוקיים");
+                return false;
+        }
+        else
+            document.getElementById("phone").style.borderColor="lightGreen"; 
+    }
+    if(document.getElementById("city")){
+        var english = /^[A-Za-z ]*$/;
+        var hebrew = /^[א-ת]*$/;
+        var x1 = document.getElementById("city").value;
+        if(x1.length<2){
+            document.getElementById("city").style.borderColor="red";
+            alert(" שם העיר חייב להכיל שני תוים או יותר")
+            return false;
+        }
+        else if((english.test(x1)) || (!english.test(x1) && !hebrew.test(x1))){
+            alert("אנא הכנס שם עיר באנגלית");
+            document.getElementById("city").style.borderColor="red";
+            return false;
+        }
+        else
+            document.getElementById("city").style.borderColor="lightGreen";
     }
     if(checkBox){
          document.getElementById("adminP").checked = true;
